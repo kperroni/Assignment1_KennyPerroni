@@ -56,18 +56,26 @@
                 <textarea class="form-control" id="preparation" style="resize: none;" rows="8"></textarea>
             </div>
             <hr />
+
+            <div class="form-group float-label-control">
+                <label for="notes">Notes</label>
+                <textarea class="form-control" id="notes" style="resize: none;" rows="2"></textarea>
+            </div>
+            <hr />
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8" style="padding-top:20px;">
                     <div class="form-group float-label-control">
-                        <label for="notes">Notes</label>
-                        <textarea class="form-control" id="notes" style="resize: none;" rows="2"></textarea>
+                        <label for="uploadImage">Upload image of Recipe</label>
+                        <asp:FileUpload ID="uploadImage" runat="server" />
                     </div>
                 </div>
                 <div class="col-md-4" style="padding-top: 20px; padding-left: 80px; float: left;">
                     <asp:ImageButton ID="submitRecipe2" Width="65px" ImageUrl="img/add.png" runat="server" title="Add Recipe" />
                 </div>
             </div>
+
         </form>
+
     </div>
 
 </asp:Content>
