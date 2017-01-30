@@ -72,7 +72,7 @@
                 </asp:ContentPlaceHolder>
 
             </div>
-        </div><br /><br />
+        </div><br />
         <div class="container" style="text-align:center;" id="footer">
             <h5><b>Author: Kenny Perroni. &copy; Copyright 2017</b></h5>
         </div>
