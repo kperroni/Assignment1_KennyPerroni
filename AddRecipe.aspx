@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="AddRecipe.aspx.cs" Inherits="AddRecipe" %>
 
+<%@ Register src="ingredientsList.ascx" tagname="ingredientsList" tagprefix="uc1" %>
+<%@ Register Src="~/ingredientsList.ascx" TagPrefix="uc2" TagName="ingredientsList" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder" runat="Server">
@@ -66,40 +70,24 @@
                     </div>
                 </div>
             </div>
-            <hr />
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="ingredientName">Ingredient Name</label>
-                    <asp:TextBox ID="ingredientName" runat="server" Style="width: auto;" class="form-control"></asp:TextBox>
-                </div>
-                <div class="col-md-4">
-                    <label for="unitOfMeasure">Unit of Measure</label>
-                    <asp:DropDownList ID="unitOfMeasure" CssClass="form-control" Style="width: auto;" runat="server">
-                        <asp:ListItem Text="Select Unit of Measure" Value="0"></asp:ListItem>
-                        <asp:ListItem Text="Kg" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="G" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="Cups" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="Table Spoons" Value="4"></asp:ListItem>
-                        <asp:ListItem Text="Pieces" Value="5"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div class="col-md-3">
-                    <label for="quantity">Quantity</label>
-                    <asp:DropDownList ID="quantity" CssClass="form-control" Style="width: auto;" runat="server">
-                        <asp:ListItem Text="Select Quantity" Value="0"></asp:ListItem>
-                        <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="3" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="4" Value="4"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div class="col-md-1" style="padding-top: 20px;">
-                    <asp:ImageButton ID="addIngredient" Width="40px" ImageUrl="img/addIngredient.png" runat="server" title="Add Ingredient" />
-                </div>
+            <hr />          
+            <div>          
+                <uc2:ingredientsList runat="server" ID="ingredientsList" />     
+                <uc2:ingredientsList runat="server" ID="ingredientsList1" />             
+                <uc2:ingredientsList runat="server" ID="ingredientsList2" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList3" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList4" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList5" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList6" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList7" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList8" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList9" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList10" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList11" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList12" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList13" />
+                <uc2:ingredientsList runat="server" ID="ingredientsList14" />
             </div>
-            <div>
-            </div>
-            <hr />
             <div class="form-group float-label-control">
                 <label for="prepareCookingTime">Prepare/Cooking Time</label>
                 <textarea class="form-control" id="ingredients" style="resize: none;" rows="8"></textarea>
