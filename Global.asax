@@ -37,7 +37,7 @@
         recipe.Add(newRecipe);*/
 
         Application["recipe"] = recipe;
-        
+            
     }
 
     void Application_End(object sender, EventArgs e)

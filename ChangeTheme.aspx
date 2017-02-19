@@ -12,8 +12,8 @@
     <form role="form" runat="server">
     <div class="row">
     <div class="col-md-6" style="padding-left:60px; padding-top:20px;">
-    <label class="radio-inline"><input type="radio" name="optradio">Light</label>
-    <label class="radio-inline" style="padding-left:90px;"><input type="radio" name="optradio">Dark</label>
+    <label class="radio-inline"><asp:RadioButton ID="light" GroupName="themes" runat="server"/>Light</label>
+    <label class="radio-inline" style="padding-left:90px;"><asp:RadioButton ID="dark" GroupName="themes" runat="server"/>Dark</label>
     </div>
     <div class="col-md-6">
     <asp:ImageButton ID="changeTheme" runat="server" Width="65px" ImageUrl="img/apply.png" Style="float: right;" title="Change theme" OnClick="changeTheme_Click"/>
