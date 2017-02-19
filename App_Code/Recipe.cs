@@ -32,7 +32,7 @@ public class Recipe
         set;
     }
 
-    public List<Ingredient> ingredients;
+    public List<Ingredient> recipeIngredients = new List<Ingredient>();
 
     public string prepare
     {
@@ -58,12 +58,12 @@ public class Recipe
 
     public void addIngredient(string name, string unit, int quantity)
     {
-        this.ingredients.Add(new Ingredient {name = name,  unit = unit, quantity = quantity});
+        this.recipeIngredients.Add(new Ingredient {name = name,  unit = unit, quantity = quantity});
     }
     
     public List<Ingredient> getIngredients()
     {
-        return this.ingredients;
+        return this.recipeIngredients;
     }
 
     public List<Recipe> getRecipes()

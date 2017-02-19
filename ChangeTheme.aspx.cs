@@ -5,11 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class ViewRecipe : System.Web.UI.Page
+public partial class ChangeTheme : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
+    }
+
+    protected void changeTheme_Click(object sender, ImageClickEventArgs e)
+    {
 
     }
 }

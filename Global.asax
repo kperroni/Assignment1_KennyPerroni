@@ -11,7 +11,7 @@
 
         /* recipe.Add(new Recipe {name = "newRecipe", category = "category", serve = 1, description = "myDescription",
              ingredient.Add(new Ingredient{ name = "asdf", unit = "asdf", quantity = 1}), prepare = "myPreparation", submitter = "submitter"});
-             */
+             
 
         Recipe newRecipe = new Recipe {name = "newRecipe", category = "category", serve = 1, description = "myDescription",
             prepare = "myPreparation", submitter = "submitter"};
@@ -31,10 +31,10 @@
         ingredientList.Add(myIngredient);
         ingredientList.Add(myIngredient2);
 
-        newRecipe.ingredients = ingredientList;
+        newRecipe.recipeIngredients = ingredientList;
 
         //newRecipe.addIngredient("newIngredient", "Kg", 1);
-        recipe.Add(newRecipe);
+        recipe.Add(newRecipe);*/
 
         Application["recipe"] = recipe;
         

@@ -17,7 +17,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder" runat="Server">
 
     <div class="container well well-lg" style="padding-top: 30px; background-color: #ffffff; width: 900px;">
-
+        <div style="float:right;"><a href="ChangeTheme.aspx">Change theme here!</a></div>
         <h1 class="h1 page-header">Welcome to Recipe pot!</h1>
         <br />
         <p class="lead;" style="font-family: sans-serif; text-align: justify; font-size: 20px;">
