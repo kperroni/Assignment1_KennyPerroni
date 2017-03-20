@@ -16,19 +16,12 @@
                 <div class="form-group float-label-control col-md-6">
 
                     <label for="recipeName">Recipe Name</label>
-                    <!--  <input type="text" id="recipeName" style="width: 80%;" class="form-control">-->
                     <asp:TextBox ID="recipeName" runat="server" Style="width: 80%;" class="form-control"></asp:TextBox>
                     <asp:RequiredFieldValidator ForeColor="Red" ID="recipeNameValidator" runat="server" ErrorMessage="You must type in a Recipe Name!" ControlToValidate="recipeName" SetFocusOnError="true"></asp:RequiredFieldValidator>
                 </div>
                 <div class="col-md-6">
                     <div style="float: left;">
                         <label for="category">Category</label>
-                        <!--  <select class="form-control" id="category" style="width: auto;">
-                        <option value="" selected disabled>Choose one category</option>
-                        <option>Category 1</option>
-                        <option>Category 2</option>
-                        <option>Category 3</option>
-                    </select> -->
                         <asp:DropDownList ID="category" CssClass="form-control" Style="width: auto;" runat="server">
                             <asp:ListItem Text="Select Category" Value="0"></asp:ListItem>
                         </asp:DropDownList>
@@ -41,12 +34,6 @@
                 <div class="col-md-6">
                     <div class="form-group float-label-control">
                         <label for="serves">Serves</label>
-                        <!--  <select class="form-control" id="serves" style="width: auto;">
-                            <option value="" selected disabled>How many serves?</option>
-                            <option>1 Serve</option>
-                            <option>2 Serves</option>
-                            <option>3 Serves</option>
-                        </select> -->
                         <asp:DropDownList ID="serves" CssClass="form-control" Style="width: auto;" runat="server">
                             <asp:ListItem Text="Select Serves" Value="0"></asp:ListItem>
                             <asp:ListItem Text="1" Value="1"></asp:ListItem>
@@ -65,7 +52,10 @@
                     </div>
                 </div>
             </div>
-            <hr />          
+            <hr />  
+            <div class="container" style="text-align:center;" id="footer">
+            <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
+        </div>        
             <div>       
                 <uc1:IngredientsList runat="server" id="IngredientsList" />
                 <uc1:IngredientsList runat="server" id="IngredientsList1" />

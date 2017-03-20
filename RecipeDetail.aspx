@@ -31,6 +31,9 @@
                     <hr />
                 </SeparatorTemplate>
             </asp:DataList>
+       <div class="container" style="text-align:center;" id="footer">
+            <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
+        </div>
 
       
 

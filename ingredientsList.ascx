@@ -13,11 +13,6 @@
                     <label for="unitOfMeasure">Unit of Measure</label>
                     <asp:DropDownList ID="unitOfMeasure" CssClass="form-control" Style="width: auto;" runat="server">
                         <asp:ListItem Text="Select Unit of Measure" Value="0"></asp:ListItem>
-                        <asp:ListItem Text="Kg" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="G" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="Cups" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="Table Spoons" Value="4"></asp:ListItem>
-                        <asp:ListItem Text="Pieces" Value="5"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
                 <div class="col-md-4">

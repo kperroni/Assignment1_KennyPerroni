@@ -26,7 +26,7 @@
                 <h3 class="h3" style="padding-left: 27px; margin-top: -24px;"><span style="color:#283593">Recipe</span>
                     <span style="color: #D32F2F"><b>Pot</b></span></h3>
             </div>
-            <div class="col-md-10" style="padding-top: 60px; padding-left: 50px; width: 450px;">
+            <div class="col-md-8" style="padding-top: 60px; padding-left: 50px; width: 450px;">
                 <nav class="navbar navbar-default" style="background-color: #ffffff;">
                     <div class="container-fluid">
                         <!-- Brand and toggle get grouped for better mobile display -->
@@ -58,6 +58,10 @@
                     <!-- /.container-fluid -->
                 </nav>
             </div>
+            <div class="col-md-2" style="padding-top: 60px; padding-left: 50px; width: 450px;">
+
+                <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-1" style="padding-top: 70px; padding-left: 20px;">
@@ -66,15 +70,16 @@
                 </asp:ContentPlaceHolder>
 
             </div>
+      
             <div class="col-md-11">
-
-                <asp:ContentPlaceHolder ID="contentHolder" runat="server">
+            
+                <asp:ContentPlaceHolder ID="contentHolder" runat="server">                  
                 </asp:ContentPlaceHolder>
 
             </div>
         </div><br />
         <div class="container" style="text-align:center;" id="footer">
-            <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. &copy; Copyright 2017</b></h5>
+            <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
         </div>
     </div>
 </body>

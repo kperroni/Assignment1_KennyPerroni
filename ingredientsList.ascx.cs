@@ -40,6 +40,11 @@ public partial class IngredientsList : System.Web.UI.UserControl
         ingredient.Items.Insert(index, new ListItem(name, id.ToString()));
     }
 
+    public void insertUnitElement(int index, int id, string name)
+    {
+        unitOfMeasure.Items.Insert(index, new ListItem(name, id.ToString()));
+    }
+
     public int getUnitOfMeasure()
     {
         return Convert.ToInt32(unitOfMeasure.SelectedItem.Value);

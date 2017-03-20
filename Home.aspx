@@ -34,7 +34,9 @@
     </div>
     <br />
     <br />
-
+   <div class="container" style="text-align:center;" id="footer">
+            <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
+        </div>
     <div class="container well well-lg" style="background-color: #ffffff; width: 900px;">
 
         <h1 class="h1 page-header">How does Recipe pot works?</h1>

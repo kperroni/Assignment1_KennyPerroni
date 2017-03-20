@@ -15,6 +15,9 @@
     <label class="radio-inline"><asp:RadioButton ID="light" GroupName="themes" runat="server"/>Light</label>
     <label class="radio-inline" style="padding-left:90px;"><asp:RadioButton ID="dark" GroupName="themes" runat="server"/>Dark</label>
     </div>
+        <div class="container" style="text-align:center;" id="footer">
+            <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
+        </div>
     <div class="col-md-6">
     <asp:ImageButton ID="changeTheme" runat="server" Width="65px" ImageUrl="img/apply.png" Style="float: right;" title="Change theme" OnClick="changeTheme_Click"/>
     </div>

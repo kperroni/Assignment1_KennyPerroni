@@ -34,14 +34,22 @@ public partial class Search : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack) { 
+        loadCategories();
+        loadSubmitters();
+        loadIngredients();
+        }
+
+    }
+
+    private void loadCategories()
+    {
+        category.Items.Clear();
+        category.Items.Insert(0, new ListItem("All", "0"));
         CategoryHandler categoryHandler = new CategoryHandler();
         List<Category> myCategories = categoryHandler.getCategories();
-        IngredientHandler ingredientHandler = new IngredientHandler();
-        List<Ingredient> myIngredients = ingredientHandler.getIngredients();
-        RecipeHandler recipeHandler = new RecipeHandler();
-        List<string> submitters;
-
         int i = 1;
+
         foreach (Category thisCategory in myCategories)
         {
 
@@ -49,19 +57,16 @@ public partial class Search : System.Web.UI.Page
             i++;
         }
 
-        i = 1;
+    }
 
-        foreach (Ingredient thisIngredient in myIngredients)
-        {
+    private void loadSubmitters()
+    {
+        submittedBy.Items.Clear();
+        submittedBy.Items.Insert(0, new ListItem("All", "0"));
+        RecipeHandler recipeHandler = new RecipeHandler();
+        List<string> submitters = recipeHandler.getSubmitters();
+        int i = 1;
 
-            ingredient.Items.Insert(i, new ListItem(thisIngredient.name, thisIngredient.id.ToString()));
-            i++;
-         
-        }
-
-       submitters = recipeHandler.getSubmitters();
-
-        i = 1;
         foreach (String thisSubmitter in submitters)
         {
 
@@ -69,14 +74,29 @@ public partial class Search : System.Web.UI.Page
             i++;
 
         }
- 
 
+    }
 
+    private void loadIngredients()
+    {
+        ingredient.Items.Clear();
+        ingredient.Items.Insert(0, new ListItem("All", "0"));
+        IngredientHandler ingredientHandler = new IngredientHandler();
+        List<Ingredient> myIngredients = ingredientHandler.getIngredients();
+        int i = 1;
+
+        foreach (Ingredient thisIngredient in myIngredients)
+        {
+
+            ingredient.Items.Insert(i, new ListItem(thisIngredient.name, thisIngredient.id.ToString()));
+            i++;
+
+        }
     }
 
     protected void searchRecipe_Click(object sender, ImageClickEventArgs e)
     {
-
+        
         SqlConnection conn;
         SqlCommand comm = new SqlCommand("SELECT");
         SqlDataReader reader;

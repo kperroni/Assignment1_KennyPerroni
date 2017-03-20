@@ -5,27 +5,46 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for RecipeHandler
+/// Summary description for UnitOfMeasure
 /// </summary>
-public class RecipeHandler
+public class UnitOfMeasure
 {
-    public RecipeHandler()
+    public int id
     {
+        get;
+        set;
+    }
+
+    public string name
+    {
+        get;
+        set;
+    }
+
+    public UnitOfMeasure(int id, string name)
+    {
+
+        this.id = id;
+        this.name = name;
         //
         // TODO: Add constructor logic here
         //
     }
 
-    public List<string> getSubmitters()
+    public UnitOfMeasure()
     {
 
+    }
+
+    public List<UnitOfMeasure> getUnitsOfMeasure()
+    {
         DBConnect objConn = new DBConnect();
-        List<string> myList = new List<string>();
+        List<UnitOfMeasure> myList = new List<UnitOfMeasure>();
         SqlConnection myConn = objConn.connect();
         SqlCommand comm;
         SqlDataReader reader;
 
-        comm = new SqlCommand("SELECT submittedBy FROM recipe GROUP BY submittedBy", myConn);
+        comm = new SqlCommand("SELECT * FROM unitOfMeasure", myConn);
 
         try
         {
@@ -37,7 +56,7 @@ public class RecipeHandler
                 while (reader.Read())
                 {
 
-                    myList.Add((reader.GetString(0)));
+                    myList.Add(new UnitOfMeasure(reader.GetInt32(0), reader.GetString(1)));
 
                 }
                 reader.Close();
@@ -62,5 +81,6 @@ public class RecipeHandler
         }
 
         return myList;
+
     }
 }
