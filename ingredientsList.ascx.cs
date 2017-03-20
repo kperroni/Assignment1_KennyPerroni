@@ -15,34 +15,44 @@ public partial class IngredientsList : System.Web.UI.UserControl
         //For each to access ingredients
     }
 
-    protected void ingredientNameValidator_ServerValidate(object source, ServerValidateEventArgs args)
-    {
+      protected void ingredientNameValidator_ServerValidate(object source, ServerValidateEventArgs args)
+      {
 
-        if ((unitOfMeasure.SelectedItem.Value.ToString() != "0" || !String.IsNullOrEmpty(quantity.Text.ToString())) && String.IsNullOrEmpty(ingredientName.Text.ToString()))
-            args.IsValid = false;
-        else
-            args.IsValid = true;
+          if ((unitOfMeasure.SelectedItem.Value.ToString() != "0" || !String.IsNullOrEmpty(quantity.Text.ToString())) && (ingredient.SelectedItem.Value.ToString() == "0"))
+              args.IsValid = false;
+          else
+              args.IsValid = true;
 
-    }
+      }
 
     public String getIngredientName()
+      {
+          return ingredient.SelectedItem.Text;
+      }
+
+    public int getIngredientValue()
     {
-        return ingredientName.Text.ToString();
+        return Convert.ToInt32(ingredient.SelectedValue);
     }
 
-    public String getUnitOfMeasure()
+    public void insertIngredientElement(int index, int id, string name)
     {
-        return unitOfMeasure.SelectedItem.Text.ToString();
+        ingredient.Items.Insert(index, new ListItem(name, id.ToString()));
     }
 
-    public int getQuantity()
+    public int getUnitOfMeasure()
     {
-        return Convert.ToInt32(quantity.Text.ToString());
+        return Convert.ToInt32(unitOfMeasure.SelectedItem.Value);
+    }
+
+    public String getQuantity()
+    {
+        return quantity.Text;
     }
 
     protected void quantityCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        if ((unitOfMeasure.SelectedItem.Value.ToString() != "0" || !String.IsNullOrEmpty(ingredientName.Text.ToString())) && String.IsNullOrEmpty(quantity.Text.ToString()))
+        if ((unitOfMeasure.SelectedItem.Value.ToString() != "0" || ingredient.SelectedItem.Value.ToString() != "0") && String.IsNullOrEmpty(quantity.Text.ToString()))
             args.IsValid = false;
         else
             args.IsValid = true;

@@ -31,9 +31,6 @@
                     </select> -->
                         <asp:DropDownList ID="category" CssClass="form-control" Style="width: auto;" runat="server">
                             <asp:ListItem Text="Select Category" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Category 1" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Category 2" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Category 3" Value="3"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>

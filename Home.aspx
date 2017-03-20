@@ -24,7 +24,7 @@
             Having a family reunion? A party at your place with your friends?
             Your boss is having dinner at your house?<br />
             <br />
-            You know that they key to a successful party or reunion
+            You know that the key to a successful party or reunion
             is the food that is served. Get rid of that old dusty 
             recipe book that has gone through the family for generations, and
             jump to the new age having all your recipes on a web site that

@@ -33,6 +33,44 @@ public partial class AddRecipe : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        CategoryHandler categoryHandler = new CategoryHandler();
+        List<Category> myCategories = categoryHandler.getCategories();
+        IngredientHandler ingredientHandler = new IngredientHandler();
+        List<Ingredient> myIngredients = ingredientHandler.getIngredients();
+        int i = 1;
+
+        foreach (Category thisCategory in myCategories)
+        {
+
+            category.Items.Insert(i, new ListItem(thisCategory.name, thisCategory.id.ToString()));
+            i++;
+        }
+
+        i = 1;
+
+        foreach (Ingredient thisIngredient in myIngredients)
+        {
+
+            IngredientsList.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList1.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList2.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList3.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList4.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList5.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList6.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList7.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList8.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList9.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList10.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList11.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList12.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList13.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+            IngredientsList14.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
+        }
+
+
+        
+
     }
 
     protected void submitRecipe_Click(object sender, ImageClickEventArgs e)
@@ -44,7 +82,8 @@ public partial class AddRecipe : System.Web.UI.Page
         if (Page.IsValid) { 
         Recipe newRecipe = new Recipe();
 
-        IngredientsList[] myIngredients = new IngredientsList[15];
+            IngredientsList[] myIngredients = new IngredientsList[15];
+            RecipeIngredientUnit[] ingredientsOfRecipe = new RecipeIngredientUnit[15];
 
         myIngredients[0] = this.IngredientsList;
         myIngredients[1] = this.IngredientsList1;
@@ -63,28 +102,43 @@ public partial class AddRecipe : System.Web.UI.Page
         myIngredients[14] = this.IngredientsList14;
 
         newRecipe.name = recipeName.Text;
-        newRecipe.category = category.SelectedItem.Text;
-        newRecipe.serve = Convert.ToInt32(serves.SelectedItem.Text);
+        newRecipe.category = Int32.Parse(category.SelectedValue);
+        newRecipe.serve = Int32.Parse(serves.SelectedValue);
         newRecipe.description = description.Text;
         newRecipe.prepare = prepareCookingTime.Text;
         newRecipe.submitter = submittedBy.Text;
+
+
 
         foreach (IngredientsList x in myIngredients)
         {
             if (!(String.IsNullOrEmpty(x.getIngredientName())))
             {
-                Ingredient auxIngredient = new Ingredient();
-                auxIngredient.name = x.getIngredientName();
-                auxIngredient.unit = x.getUnitOfMeasure();
-                auxIngredient.quantity = x.getQuantity();             
+                Ingredient auxIngredient = new Ingredient(x.getIngredientValue(), x.getIngredientName());
+                auxIngredient.name = x.getIngredientName();           
                 newRecipe.recipeIngredients.Add(auxIngredient);
             }
         }
 
-        List<Recipe> recipe = (List<Recipe>)HttpContext.Current.Application["recipe"];
-        recipe.Add(newRecipe);
-        HttpContext.Current.Application["recipe"] = recipe;
-        Response.Redirect("AddRecipe.aspx");
+            //List<Recipe> recipe = (List<Recipe>)HttpContext.Current.Application["recipe"];
+            // recipe.Add(newRecipe);
+            // HttpContext.Current.Application["recipe"] = recipe;
+           int idRecipe = newRecipe.saveRecipe(newRecipe);
+            int i = 0;
+
+            foreach(IngredientsList newItem in myIngredients)
+            {
+                if(!String.IsNullOrEmpty(newItem.getQuantity().ToString()))
+                { 
+                ingredientsOfRecipe[i] = new RecipeIngredientUnit(idRecipe, newItem.getIngredientValue(), newItem.getUnitOfMeasure(), Convert.ToInt32(newItem.getQuantity()));
+                i++;
+                }
+            }
+
+            newRecipe.saveIngredients(ingredientsOfRecipe, i);
+
+           Response.Redirect("AddRecipe.aspx");
+       
         }
 
     }

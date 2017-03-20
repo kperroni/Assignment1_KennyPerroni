@@ -2,9 +2,12 @@
 <div class="row">
                 <div class="col-md-4">
                     <label for="ingredientName">Ingredient Name</label>
-                    <asp:TextBox ID="ingredientName" runat="server" Style="width: auto;" class="form-control"></asp:TextBox>
-                    <asp:CustomValidator ID="ingredientNameValidator" ValidateEmptyText="true" runat="server" ErrorMessage="You must enter a name for the ingredient!"
-                        SetFocusOnError="true" ForeColor="Red" OnServerValidate="ingredientNameValidator_ServerValidate" ControlToValidate="ingredientName"></asp:CustomValidator> 
+                 
+                     <asp:DropDownList ID="ingredient" CssClass="form-control" Style="width: auto;" runat="server">
+                         <asp:ListItem Text="Select an Ingredient" Value="0"></asp:ListItem>
+                         </asp:DropDownList>
+                    <asp:CustomValidator ID="ingredientValidator" Display="Dynamic" OnServerValidate="ingredientNameValidator_ServerValidate"
+                         ValidateEmptyText="true" ForeColor="Red" runat="server" ErrorMessage="You must select an ingredient" ControlToValidate="ingredient" SetFocusOnError="true"></asp:CustomValidator>
                 </div>
                 <div class="col-md-4">
                     <label for="unitOfMeasure">Unit of Measure</label>

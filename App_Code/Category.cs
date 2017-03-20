@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Ingredient
+/// Summary description for Category
 /// </summary>
-public class Ingredient
+public class Category
 {
-
     public int id
     {
         get;
@@ -21,10 +21,14 @@ public class Ingredient
         set;
     }
 
-    public Ingredient(int id, string name)
+    public Category(int id, string name)
     {
+
         this.id = id;
         this.name = name;
+        //
+        // TODO: Add constructor logic here
+        //
     }
 
 }
