@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -7,6 +8,11 @@ using System.Web.UI.WebControls;
 
 public partial class AddRecipe : System.Web.UI.Page
 {
+    int controllers = 0;
+    List<DropDownList> myDropdownsIngredient = new List<DropDownList>();
+    List<DropDownList> myDropdownsUnit = new List<DropDownList>();
+    List<TextBox> myTextBoxes = new List<TextBox>();
+
     void Page_PreInit(Object sender, EventArgs e)
     {
 
@@ -33,6 +39,19 @@ public partial class AddRecipe : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        if (!Page.IsPostBack)
+        {
+            databind();
+            loadFields();
+
+
+        }
+
+
+    }
+
+    private void databind()
+    {
         CategoryHandler categoryHandler = new CategoryHandler();
         List<Category> myCategories = categoryHandler.getCategories();
         IngredientHandler ingredientHandler = new IngredientHandler();
@@ -93,8 +112,6 @@ public partial class AddRecipe : System.Web.UI.Page
 
             i++;
         }
-
-
     }
 
     protected void submitRecipe_Click(object sender, ImageClickEventArgs e)
@@ -123,6 +140,8 @@ public partial class AddRecipe : System.Web.UI.Page
             myIngredients[12] = this.IngredientsList12;
             myIngredients[13] = this.IngredientsList13;
             myIngredients[14] = this.IngredientsList14;
+
+            int u = myDropdownsIngredient.Count;
 
             newRecipe.name = recipeName.Text;
             newRecipe.category = Int32.Parse(category.SelectedValue);
@@ -164,5 +183,86 @@ public partial class AddRecipe : System.Web.UI.Page
     protected void cancelRecipe_Click(object sender, ImageClickEventArgs e)
     {
         Response.Redirect("AddRecipe.aspx");
+    }
+
+    protected void addCategoryButton_Click(object sender, EventArgs e)
+    {
+        Category newCategory = new Category();
+        newCategory.saveCategory(addCategoryText.Text);
+        databind();
+        addCategoryText.Text = "";
+    }
+
+    protected void addIngredient_Click(object sender, EventArgs e)
+    {
+        for (int i = 0; i < Convert.ToInt32(TextBox1.Text); i++)
+        {
+            
+            ingredientsPanel.Controls.Add(createDropDownIngredient());
+            ingredientsPanel.Controls.Add(createDropDownUnit());
+            ingredientsPanel.Controls.Add(createTextBoxQuantity());
+            ingredientsPanel.Controls.Add(new LiteralControl("<hr />"));
+  
+
+        }
+
+    }
+
+    private void loadFields()
+    {
+
+        for (int i = 0; i < controllers; i++)
+        {
+            ingredientsPanel.Controls.Add(myDropdownsIngredient[i]);
+            ingredientsPanel.Controls.Add(myDropdownsUnit[i]);
+            ingredientsPanel.Controls.Add(myTextBoxes[i]);
+        }
+        
+     
+    }
+
+    private DropDownList createDropDownIngredient()
+    {
+        IngredientHandler ingredientHandler = new IngredientHandler();
+        List<Ingredient> myIngredients = ingredientHandler.getIngredients();
+
+        DropDownList ingredient = new DropDownList();
+        ingredient.CssClass = "form-control";
+        ingredient.Style.Add("width","auto");
+        ingredient.Items.Insert(0, new ListItem("Select an Ingredient", "0"));
+        int i = 1;
+        foreach (Ingredient thisIngredient in myIngredients)
+        {
+            ingredient.Items.Insert(i, new ListItem(thisIngredient.name, thisIngredient.id.ToString()));
+            i++;
+        }
+
+        myDropdownsIngredient.Add(ingredient);
+        return ingredient;
+    }
+
+    private DropDownList createDropDownUnit()
+    {
+        DropDownList unitOfMeasure = new DropDownList();
+        unitOfMeasure.CssClass = "form-control";
+        unitOfMeasure.Style.Add("width", "auto");
+        unitOfMeasure.Items.Insert(0, new ListItem("Select Unit of Measure", "1"));
+        unitOfMeasure.Items.Insert(1, new ListItem("1", "2"));
+        unitOfMeasure.Items.Insert(2, new ListItem("2", "3"));
+        unitOfMeasure.Items.Insert(3, new ListItem("3", "4"));
+        unitOfMeasure.Items.Insert(4, new ListItem("4", "5"));
+
+        myDropdownsUnit.Add(unitOfMeasure);
+        return unitOfMeasure;
+    }
+
+    private TextBox createTextBoxQuantity()
+    {
+        TextBox iQuantity = new TextBox();
+        iQuantity.CssClass = "form-control";
+        iQuantity.Style.Add("width", "auto");
+        myTextBoxes.Add(iQuantity);
+        return iQuantity;
+
     }
 }

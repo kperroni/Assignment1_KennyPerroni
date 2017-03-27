@@ -40,4 +40,5 @@ public class RecipeIngredientUnit
         this.quantity = quantity;
 
     }
+
 }

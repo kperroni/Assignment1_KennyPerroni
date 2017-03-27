@@ -31,4 +31,34 @@ public class Category
         //
     }
 
+    public Category()
+    {
+
+    }
+
+    public void saveCategory(string categoryName)
+    {
+        DBConnect objConn = new DBConnect();
+
+        SqlConnection myConn = objConn.connect();
+        SqlCommand comm = new SqlCommand("insertNewCategory", myConn);
+        comm.CommandType = System.Data.CommandType.StoredProcedure;
+
+        comm.Parameters.Add("@categoryName", System.Data.SqlDbType.VarChar).Value = categoryName;
+
+        try
+        {
+            myConn.Open();
+            comm.ExecuteNonQuery();
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+            myConn.Close();
+        }
+
+    }
 }

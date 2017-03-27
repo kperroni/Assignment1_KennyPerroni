@@ -10,7 +10,7 @@
 
         <h2 class="h2 page-header" style="margin-top: -20px; margin-bottom: 40px;">Add your new Recipe to the pot!</h2>
         <br />
-        <form role="form" runat="server">
+        <form id="myForm" role="form" runat="server">
             <div class="row">
 
                 <div class="form-group float-label-control col-md-6">
@@ -25,6 +25,8 @@
                         <asp:DropDownList ID="category" CssClass="form-control" Style="width: auto;" runat="server">
                             <asp:ListItem Text="Select Category" Value="0"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:TextBox ID="addCategoryText" runat="server"></asp:TextBox>    
+                        <asp:Button ID="addCategoryButton" CausesValidation="false" runat="server" Text="Add new Category" OnClick="addCategoryButton_Click"/>
                     </div>
                 </div>
             </div>
@@ -57,6 +59,13 @@
             <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
         </div>        
             <div>       
+
+
+                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                <asp:Button ID="Button1" CausesValidation="false" OnClientClick="addIngredient_Click return false;" UseSubmitBehavior="false" runat="server" Text="Button" />
+
+                <asp:Panel ID="ingredientsPanel" runat="server"></asp:Panel>
+
                 <uc1:IngredientsList runat="server" id="IngredientsList" />
                 <uc1:IngredientsList runat="server" id="IngredientsList1" />
                 <uc1:IngredientsList runat="server" id="IngredientsList2" />
