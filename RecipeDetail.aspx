@@ -58,11 +58,11 @@
         <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
         <asp:DetailsView ID="DetailsView1" OnModeChanging = "ModeChanging"  OnItemUpdated="recipe_ItemUpdated" OnItemDeleted="recipe_ItemDeleted" runat="server" Height="50px" Width="125px" AutoGenerateRows="False" DataKeyNames="idRecipe" DataSourceID="SqlDataSource1">
             <Fields>
-                <asp:BoundField DataField="idRecipe" HeaderText="idRecipe" InsertVisible="False" ReadOnly="True" SortExpression="idRecipe" />
-                <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
-                <asp:TemplateField HeaderText="serves" SortExpression="serves">
+                <asp:BoundField DataField="idRecipe" HeaderText="ID Recipe" InsertVisible="False" ReadOnly="True" SortExpression="idRecipe" />
+                <asp:BoundField DataField="name" HeaderText="Name" SortExpression="name" />
+                <asp:TemplateField HeaderText="Serves" SortExpression="serves">
                     <EditItemTemplate>
-                        <asp:DropDownList ID="DropDownList2" SelectedValue='<%# Bind("serves") %>' runat="server">
+                        <asp:DropDownList ID="DropDownList2" CssClass="form-control" SelectedValue='<%# Bind("serves") %>' runat="server">
                             <asp:ListItem Value="1">1</asp:ListItem>
                             <asp:ListItem Value="2">2</asp:ListItem>
                             <asp:ListItem Value="3">3</asp:ListItem>
@@ -76,11 +76,11 @@
                         <asp:Label ID="Label2" runat="server" Text='<%# Bind("serves") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" />
-                <asp:BoundField DataField="prepareCookingTime" HeaderText="prepareCookingTime" SortExpression="prepareCookingTime" />
-                <asp:TemplateField HeaderText="idCategory" SortExpression="idCategory">
+                <asp:BoundField DataField="description" HeaderText="Description" SortExpression="description" />
+                <asp:BoundField DataField="prepareCookingTime" HeaderText="Prepare/Cooking Time" SortExpression="prepareCookingTime" />
+                <asp:TemplateField HeaderText="Category" SortExpression="idCategory">
                     <EditItemTemplate>
-                        <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Bind("idCategory") %>' DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="idCategory"></asp:DropDownList>
+                        <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" SelectedValue='<%# Bind("idCategory") %>' DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="idCategory"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RecipePot %>" SelectCommand="SELECT [idCategory], [name] FROM [category]"></asp:SqlDataSource>
                     </EditItemTemplate>
                     <InsertItemTemplate>
@@ -117,10 +117,13 @@
                 <asp:Parameter Name="idRecipe" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
+        <br />
+        <br />
 
         <div class="form-group float-label-control" runat="server" id="addNewCategory">
-        <asp:TextBox ID="addCategoryText" runat="server"></asp:TextBox>    
-        <asp:Button ID="addCategoryButton" runat="server" Text="Add new Category" OnClick="addCategoryButton_Click"/>
+         <h2 class="h2">Add your new Category here!</h2>
+        <asp:TextBox ID="addCategoryText" Width="30%" CssClass="form-control" runat="server"></asp:TextBox>    
+        <asp:Button ID="addCategoryButton" Width="30%" CssClass="form-control" runat="server" Text="Add new Category" OnClick="addCategoryButton_Click"/>
         </div>
        <div class="container" style="text-align:center;" id="footer">
             <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>

@@ -8,10 +8,6 @@ using System.Web.UI.WebControls;
 
 public partial class AddRecipe : System.Web.UI.Page
 {
-    int controllers = 0;
-    List<DropDownList> myDropdownsIngredient = new List<DropDownList>();
-    List<DropDownList> myDropdownsUnit = new List<DropDownList>();
-    List<TextBox> myTextBoxes = new List<TextBox>();
 
     void Page_PreInit(Object sender, EventArgs e)
     {
@@ -42,6 +38,9 @@ public partial class AddRecipe : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
+            newCategoryLabel.Visible = false;
+            addCategoryText.Visible = false;
+            addCategoryButton.Visible = false;
             databind();
             HttpContext.Current.Session["listOfIngredients"] = new List<IngredientAuxiliar>();
             bindGridData();
@@ -146,10 +145,26 @@ public partial class AddRecipe : System.Web.UI.Page
 
     protected void addCategoryButton_Click(object sender, EventArgs e)
     {
-        Category newCategory = new Category();
-        newCategory.saveCategory(addCategoryText.Text);
-        databind();
-        addCategoryText.Text = "";
+
+        if (!String.IsNullOrEmpty(addCategoryText.Text.Trim()))
+        {
+            Category newCategory = new Category();
+            newCategory.saveCategory(addCategoryText.Text);
+            databind();
+            addCategoryText.Text = "";
+            category.SelectedValue = "0";
+            newCategoryLabel.Visible = false;
+            addCategoryText.Visible = false;
+            addCategoryButton.Visible = false;
+            submitRecipe.Enabled = true;
+        }
+
+        else
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please, type a category!')", true);
+        }
+        
+
     }
 
 
@@ -226,5 +241,24 @@ public partial class AddRecipe : System.Web.UI.Page
         auxList.RemoveAt(e.RowIndex);
         HttpContext.Current.Session["listOfIngredients"] = auxList;
         bindGridData();
+    }
+
+    protected void category_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (category.SelectedValue.Equals("100"))
+        {
+            newCategoryLabel.Visible = true;
+            addCategoryText.Visible = true;
+            addCategoryButton.Visible = true;
+            submitRecipe.Enabled = false;
+        }
+
+        else
+        {
+            newCategoryLabel.Visible = false;
+            addCategoryText.Visible = false;
+            addCategoryButton.Visible = false;
+            submitRecipe.Enabled = true;
+        }
     }
 }

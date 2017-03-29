@@ -22,12 +22,13 @@
                 <div class="form-group float-label-control col-md-3">
                   
                         <label for="category">Category</label>
-                        <asp:DropDownList ID="category" CssClass="form-control" Style="width: auto;" runat="server">
+                        <asp:DropDownList ID="category" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="category_SelectedIndexChanged" Style="width: auto;" runat="server">
                             <asp:ListItem Text="Select Category" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="New Category" Value="100"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
                         <div class="form-group float-label-control col-md-3">
-                            <label for="newCategory">Create New Category</label>
+                             <asp:Label ID="newCategoryLabel" runat="server" Font-Bold="true" Text="Create New Category"></asp:Label>
                         <asp:TextBox ID="addCategoryText" class="form-control" runat="server"></asp:TextBox>  
                         </div>
                         <div class="col-md-3">  
