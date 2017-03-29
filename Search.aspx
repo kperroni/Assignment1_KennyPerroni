@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder" runat="Server">
     <form role="form" runat="server">
         <div class="container well well-lg" style="width: 100%; padding: 70px; background-color: #ffffff;">
-
+            <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
             <h2 class="h2 page-header" style="margin-top: -20px; margin-bottom: 40px;">Look up your recipe</h2>
             <br />
 
@@ -31,6 +31,7 @@
                 <div class="col-md-8" style="padding-left: 160px; padding-top: 10px;">
                     <asp:ImageButton ID="searchRecipe" OnClick="searchRecipe_Click" Width="65px" ImageUrl="img/search.png" runat="server" title="Search Recipe" />
                 </div>
+                <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
             </div>
            <div class="container" style="text-align:center;" id="footer">
             <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
@@ -58,7 +59,7 @@
                 </asp:DataList>
 
             </div>
-
+            <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
         </div>
     </form>
 </asp:Content>

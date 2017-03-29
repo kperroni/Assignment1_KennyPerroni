@@ -4,7 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="sideContentHolder" runat="Server">
-
+    <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
     <div class="container well well-sm" style="width: 185px; background-color: #D32F2F; border-radius: 20px; border-color: #D32F2F;">
         <h4 class="h4" style="color: #ffffff;">Recipes Categories</h4>
         <a style="color: #ffffff" href="#"><u>Category 1</u></a><br />
@@ -31,6 +31,7 @@
             will do all the dirty work for you. No more scrawling or flicking 
             through pages, this is Recipe pot!        
         </p>
+        <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
     </div>
     <br />
     <br />
@@ -66,6 +67,7 @@
         <div style="float: right; padding-right: 284px; margin-top: -23px;">
             <img src="img/potImage.png" style="width: 100px;" />
         </div>
+        <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
     </div>
 </asp:Content>
 

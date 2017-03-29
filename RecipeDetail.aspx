@@ -7,7 +7,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="contentHolder" Runat="Server">
     <form id="form1" runat="server">
     <div class="container well well-lg" Runat="Server" style="width: 80%; padding: 70px; background-color: #ffffff;">
-
+        <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
         <h2 class="h2 page-header" runat="server" style="margin-top: -20px; margin-bottom: 40px;">Your recipes in the pot so far!</h2>
 
         <asp:DataList ID="recipeList" runat="server"  DataKeyField="ID" DataSourceID="SqlDataSource2">
@@ -55,7 +55,7 @@
                 <asp:QueryStringParameter Name="idRecipe" QueryStringField="idRecipe" Type="Int32" />
             </SelectParameters>
         </asp:SqlDataSource>
-
+        <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
         <asp:DetailsView ID="DetailsView1" OnModeChanging = "ModeChanging"  OnItemUpdated="recipe_ItemUpdated" OnItemDeleted="recipe_ItemDeleted" runat="server" Height="50px" Width="125px" AutoGenerateRows="False" DataKeyNames="idRecipe" DataSourceID="SqlDataSource1">
             <Fields>
                 <asp:BoundField DataField="idRecipe" HeaderText="idRecipe" InsertVisible="False" ReadOnly="True" SortExpression="idRecipe" />
@@ -126,7 +126,7 @@
             <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
         </div>
 
-      
+      <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
 
     </div>
         </form>

@@ -35,6 +35,7 @@ public partial class AddRecipe : System.Web.UI.Page
                 Page.Theme = "Light";
         }
 
+
     }
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -42,12 +43,16 @@ public partial class AddRecipe : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             databind();
-            loadFields();
-
-
+            HttpContext.Current.Session["listOfIngredients"] = new List<IngredientAuxiliar>();
+            bindGridData();
         }
+        
+    }
 
-
+    private void bindGridData()
+    {
+        GridView1.DataSource = (List<IngredientAuxiliar>)HttpContext.Current.Session["listOfIngredients"];
+        GridView1.DataBind();
     }
 
     private void databind()
@@ -69,50 +74,21 @@ public partial class AddRecipe : System.Web.UI.Page
 
         i = 1;
 
-        foreach (Ingredient thisIngredient in myIngredients)
+     foreach (Ingredient thisIngredient in myIngredients)
         {
 
             IngredientsList.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList1.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList2.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList3.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList4.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList5.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList6.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList7.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList8.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList9.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList10.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList11.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList12.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList13.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            IngredientsList14.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
-            i++;
+                      i++;
+                  }
+
+                  i = 1;
+
+                  foreach (UnitOfMeasure thisUnit in myUnits)
+                  {
+                      IngredientsList.insertUnitElement(i, thisUnit.id, thisUnit.name);
+                      i++;
+                  }
         }
-
-        i = 1;
-
-        foreach (UnitOfMeasure thisUnit in myUnits)
-        {
-            IngredientsList.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList1.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList2.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList3.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList4.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList5.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList6.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList7.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList8.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList9.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList10.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList11.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList12.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList13.insertUnitElement(i, thisUnit.id, thisUnit.name);
-            IngredientsList14.insertUnitElement(i, thisUnit.id, thisUnit.name);
-
-            i++;
-        }
-    }
 
     protected void submitRecipe_Click(object sender, ImageClickEventArgs e)
     {
@@ -122,57 +98,40 @@ public partial class AddRecipe : System.Web.UI.Page
         {
             Recipe newRecipe = new Recipe();
 
-            IngredientsList[] myIngredients = new IngredientsList[15];
+        
             RecipeIngredientUnit[] ingredientsOfRecipe = new RecipeIngredientUnit[15];
+            List<IngredientAuxiliar> auxList = (List<IngredientAuxiliar>)HttpContext.Current.Session["listOfIngredients"];
 
-            myIngredients[0] = this.IngredientsList;
-            myIngredients[1] = this.IngredientsList1;
-            myIngredients[2] = this.IngredientsList2;
-            myIngredients[3] = this.IngredientsList3;
-            myIngredients[4] = this.IngredientsList4;
-            myIngredients[5] = this.IngredientsList5;
-            myIngredients[6] = this.IngredientsList6;
-            myIngredients[7] = this.IngredientsList7;
-            myIngredients[8] = this.IngredientsList8;
-            myIngredients[9] = this.IngredientsList9;
-            myIngredients[10] = this.IngredientsList10;
-            myIngredients[11] = this.IngredientsList11;
-            myIngredients[12] = this.IngredientsList12;
-            myIngredients[13] = this.IngredientsList13;
-            myIngredients[14] = this.IngredientsList14;
+                  newRecipe.name = recipeName.Text;
+                  newRecipe.category = Int32.Parse(category.SelectedValue);
+                  newRecipe.serve = Int32.Parse(serves.SelectedValue);
+                  newRecipe.description = description.Text;
+                  newRecipe.prepare = prepareCookingTime.Text;
+                  newRecipe.submitter = submittedBy.Text;
 
-            int u = myDropdownsIngredient.Count;
+                  foreach (IngredientAuxiliar x in auxList)
+                  {
+                      if (!(String.IsNullOrEmpty(x.nameIngredient)))
+                      {
+                          Ingredient auxIngredient = new Ingredient(x.idIngredient, x.nameIngredient);
+                          auxIngredient.name = x.nameIngredient;
+                          newRecipe.recipeIngredients.Add(auxIngredient);
+                      }
+                  }
 
-            newRecipe.name = recipeName.Text;
-            newRecipe.category = Int32.Parse(category.SelectedValue);
-            newRecipe.serve = Int32.Parse(serves.SelectedValue);
-            newRecipe.description = description.Text;
-            newRecipe.prepare = prepareCookingTime.Text;
-            newRecipe.submitter = submittedBy.Text;
+                  int idRecipe = newRecipe.saveRecipe(newRecipe);
+                  int i = 0;
 
-            foreach (IngredientsList x in myIngredients)
-            {
-                if (!(String.IsNullOrEmpty(x.getIngredientName())))
-                {
-                    Ingredient auxIngredient = new Ingredient(x.getIngredientValue(), x.getIngredientName());
-                    auxIngredient.name = x.getIngredientName();
-                    newRecipe.recipeIngredients.Add(auxIngredient);
-                }
-            }
+                  foreach (IngredientAuxiliar newItem in auxList)
+                  {
+                      if (!String.IsNullOrEmpty(newItem.quantity.ToString()))
+                      {
+                          ingredientsOfRecipe[i] = new RecipeIngredientUnit(idRecipe, newItem.idIngredient, newItem.idUnit, Convert.ToInt32(newItem.quantity));
+                          i++;
+                      }
+                  }
 
-            int idRecipe = newRecipe.saveRecipe(newRecipe);
-            int i = 0;
-
-            foreach (IngredientsList newItem in myIngredients)
-            {
-                if (!String.IsNullOrEmpty(newItem.getQuantity().ToString()))
-                {
-                    ingredientsOfRecipe[i] = new RecipeIngredientUnit(idRecipe, newItem.getIngredientValue(), newItem.getUnitOfMeasure(), Convert.ToInt32(newItem.getQuantity()));
-                    i++;
-                }
-            }
-
-            newRecipe.saveIngredients(ingredientsOfRecipe, i);
+                  newRecipe.saveIngredients(ingredientsOfRecipe, i);
 
             Response.Redirect("AddRecipe.aspx");
 
@@ -193,76 +152,79 @@ public partial class AddRecipe : System.Web.UI.Page
         addCategoryText.Text = "";
     }
 
-    protected void addIngredient_Click(object sender, EventArgs e)
-    {
-        for (int i = 0; i < Convert.ToInt32(TextBox1.Text); i++)
-        {
-            
-            ingredientsPanel.Controls.Add(createDropDownIngredient());
-            ingredientsPanel.Controls.Add(createDropDownUnit());
-            ingredientsPanel.Controls.Add(createTextBoxQuantity());
-            ingredientsPanel.Controls.Add(new LiteralControl("<hr />"));
-  
 
+
+    protected void createNewIngredient_Click(object sender, EventArgs e)
+    {
+        List<IngredientAuxiliar> auxList = (List<IngredientAuxiliar>)HttpContext.Current.Session["listOfIngredients"];
+        auxList.Add(new IngredientAuxiliar(IngredientsList.getIngredientValue(), IngredientsList.getIngredientName(), Convert.ToInt32(IngredientsList.getUnitOfMeasure()), IngredientsList.getNameUnitOfMeasure(), Convert.ToInt32(IngredientsList.getQuantity()))); 
+        HttpContext.Current.Session["listOfIngredients"] = auxList;
+        bindGridData();
+
+
+    }
+
+    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GridView1.EditIndex = e.NewEditIndex;
+        bindGridData();
+    }
+
+    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+
+        e.Cancel = true;
+        GridView1.EditIndex = -1;
+        bindGridData();
+
+    }
+
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        List<IngredientAuxiliar> auxList = (List<IngredientAuxiliar>)HttpContext.Current.Session["listOfIngredients"];
+
+        GridViewRow row = GridView1.Rows[e.RowIndex];
+
+        DropDownList ingredientSelected = (DropDownList)row.FindControl("editNameIngredient");
+        DropDownList unitSelected = (DropDownList)row.FindControl("editUnit");
+        TextBox quantitySelected = (TextBox)row.FindControl("editQuantity");
+        int t;
+
+
+        if (!String.IsNullOrEmpty(ingredientSelected.SelectedItem.Text) && !String.IsNullOrEmpty(unitSelected.SelectedItem.Text) && !String.IsNullOrEmpty(quantitySelected.Text))
+        {
+                  
+            if (int.TryParse(quantitySelected.Text, out t))
+            {
+                auxList.ElementAt(e.RowIndex).idIngredient = Convert.ToInt32(ingredientSelected.SelectedValue);
+                auxList.ElementAt(e.RowIndex).nameIngredient = ingredientSelected.SelectedItem.Text;
+                auxList.ElementAt(e.RowIndex).idUnit = Convert.ToInt32(unitSelected.SelectedValue);
+                auxList.ElementAt(e.RowIndex).nameUnit = unitSelected.SelectedItem.Text;
+                auxList.ElementAt(e.RowIndex).quantity = Convert.ToInt32(quantitySelected.Text);
+
+                HttpContext.Current.Session["listOfIngredients"] = auxList;
+            }
         }
 
+       
+        GridView1.EditIndex = -1;
+        bindGridData();
     }
 
-    private void loadFields()
-    {
 
-        for (int i = 0; i < controllers; i++)
-        {
-            ingredientsPanel.Controls.Add(myDropdownsIngredient[i]);
-            ingredientsPanel.Controls.Add(myDropdownsUnit[i]);
-            ingredientsPanel.Controls.Add(myTextBoxes[i]);
-        }
-        
-     
+
+    protected void GridView1_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+        bindGridData();
     }
 
-    private DropDownList createDropDownIngredient()
+    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        IngredientHandler ingredientHandler = new IngredientHandler();
-        List<Ingredient> myIngredients = ingredientHandler.getIngredients();
+        List<IngredientAuxiliar> auxList = (List<IngredientAuxiliar>)HttpContext.Current.Session["listOfIngredients"];
 
-        DropDownList ingredient = new DropDownList();
-        ingredient.CssClass = "form-control";
-        ingredient.Style.Add("width","auto");
-        ingredient.Items.Insert(0, new ListItem("Select an Ingredient", "0"));
-        int i = 1;
-        foreach (Ingredient thisIngredient in myIngredients)
-        {
-            ingredient.Items.Insert(i, new ListItem(thisIngredient.name, thisIngredient.id.ToString()));
-            i++;
-        }
-
-        myDropdownsIngredient.Add(ingredient);
-        return ingredient;
-    }
-
-    private DropDownList createDropDownUnit()
-    {
-        DropDownList unitOfMeasure = new DropDownList();
-        unitOfMeasure.CssClass = "form-control";
-        unitOfMeasure.Style.Add("width", "auto");
-        unitOfMeasure.Items.Insert(0, new ListItem("Select Unit of Measure", "1"));
-        unitOfMeasure.Items.Insert(1, new ListItem("1", "2"));
-        unitOfMeasure.Items.Insert(2, new ListItem("2", "3"));
-        unitOfMeasure.Items.Insert(3, new ListItem("3", "4"));
-        unitOfMeasure.Items.Insert(4, new ListItem("4", "5"));
-
-        myDropdownsUnit.Add(unitOfMeasure);
-        return unitOfMeasure;
-    }
-
-    private TextBox createTextBoxQuantity()
-    {
-        TextBox iQuantity = new TextBox();
-        iQuantity.CssClass = "form-control";
-        iQuantity.Style.Add("width", "auto");
-        myTextBoxes.Add(iQuantity);
-        return iQuantity;
-
+        GridViewRow row = GridView1.Rows[e.RowIndex];
+        auxList.RemoveAt(e.RowIndex);
+        HttpContext.Current.Session["listOfIngredients"] = auxList;
+        bindGridData();
     }
 }

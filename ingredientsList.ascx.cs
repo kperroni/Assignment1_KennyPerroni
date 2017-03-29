@@ -50,6 +50,11 @@ public partial class IngredientsList : System.Web.UI.UserControl
         return Convert.ToInt32(unitOfMeasure.SelectedItem.Value);
     }
 
+    public String getNameUnitOfMeasure()
+    {
+        return unitOfMeasure.SelectedItem.Text;
+    }
+
     public String getQuantity()
     {
         return quantity.Text;

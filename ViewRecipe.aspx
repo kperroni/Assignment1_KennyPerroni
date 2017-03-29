@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder" runat="Server">
     <form id="form1" runat="server">
     <div class="container well well-lg" style="width: 80%; padding: 70px; background-color: #ffffff;">
-
+        <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
         <h2 class="h2 page-header" style="margin-top: -20px; margin-bottom: 40px;">Your recipes in the pot so far!</h2>
         <div class="container" style="text-align:center;" id="footer">
             <h5 class="footerText" style="color:#283593;"><b>Author: Kenny Perroni. #300825160 &copy; Copyright 2017</b></h5>
@@ -22,7 +22,7 @@
                     Description: <strong><%#Eval("Description")%></strong><br />
                     Prepare: <strong><%#Eval("Prepare")%></strong><br />
                     Author: <strong><%# Eval("Author")%></strong>
-
+                    <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
                    
                 </ItemTemplate>
                 <SeparatorTemplate>
@@ -30,7 +30,7 @@
                 </SeparatorTemplate>
             </asp:DataList>
         
-
+        <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
     </div>
     </form>
 </asp:Content>

@@ -41,4 +41,11 @@ public class RecipeIngredientUnit
 
     }
 
+    public RecipeIngredientUnit()
+    {
+
+    }
+
+
+    
 }
