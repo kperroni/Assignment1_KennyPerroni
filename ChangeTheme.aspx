@@ -26,6 +26,8 @@
             </form>
         </div>
   <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
-
+    <script>
+        document.getElementById("logOut").hidden = false;
+    </script>
 </asp:Content>
 

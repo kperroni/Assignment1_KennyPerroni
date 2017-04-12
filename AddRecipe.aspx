@@ -122,7 +122,7 @@
             <div class="row">
                 <div class="col-md-6 form-group float-label-control">
                     <label for="submittedBy">Submitted By</label>
-                    <asp:TextBox ID="submittedBy" runat="server" Style="width: auto;" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="submittedBy" runat="server" Enabled="false" Style="width: auto;" class="form-control"></asp:TextBox>
                     <asp:RequiredFieldValidator ForeColor="Red" validationgroup="recipeInfo" ID="submittedByValidator" runat="server" ErrorMessage="You must type in the user who is creating this recipe!" ControlToValidate="submittedBy" SetFocusOnError="true"></asp:RequiredFieldValidator>
                 </div>
                 <div class="col-md-6">
@@ -134,5 +134,8 @@
         </form>
 
     </div><!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
+    <script>
+        document.getElementById("logOut").hidden = false;
+    </script>
 
 </asp:Content>

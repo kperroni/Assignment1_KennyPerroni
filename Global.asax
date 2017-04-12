@@ -5,36 +5,7 @@
     void Application_Start(object sender, EventArgs e)
     {
         List<Recipe> recipe = new List<Recipe>();
-        /*   Recipe newRecipe = new Recipe("newRecipe", "myCategory", 2, "myDescription", "myPreparation", "theSubmitter");
-           newRecipe.addIngredient("newIngredient", "G", 2);
-           recipe.Add(newRecipe);*/
-
-        /* recipe.Add(new Recipe {name = "newRecipe", category = "category", serve = 1, description = "myDescription",
-             ingredient.Add(new Ingredient{ name = "asdf", unit = "asdf", quantity = 1}), prepare = "myPreparation", submitter = "submitter"});
-             
-
-        Recipe newRecipe = new Recipe {name = "newRecipe", category = "category", serve = 1, description = "myDescription",
-            prepare = "myPreparation", submitter = "submitter"};
-
-        List<Ingredient> ingredientList = new List<Ingredient>();
-
-        Ingredient myIngredient = new Ingredient();
-        myIngredient.name = "newIngredient";
-        myIngredient.unit = "Kg";
-        myIngredient.quantity = 2;
-
-        Ingredient myIngredient2 = new Ingredient();
-        myIngredient.name = "newIngredient1";
-        myIngredient.unit = "G";
-        myIngredient.quantity = 3;
-
-        ingredientList.Add(myIngredient);
-        ingredientList.Add(myIngredient2);
-
-        newRecipe.recipeIngredients = ingredientList;
-
-        //newRecipe.addIngredient("newIngredient", "Kg", 1);
-        recipe.Add(newRecipe);*/
+        
 
         Application["recipe"] = recipe;
             

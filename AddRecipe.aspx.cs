@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -43,6 +44,7 @@ public partial class AddRecipe : System.Web.UI.Page
             addCategoryButton.Visible = false;
             databind();
             HttpContext.Current.Session["listOfIngredients"] = new List<IngredientAuxiliar>();
+            submittedBy.Text = Membership.GetUser().UserName;
             bindGridData();
         }
         
@@ -62,8 +64,15 @@ public partial class AddRecipe : System.Web.UI.Page
         List<Ingredient> myIngredients = ingredientHandler.getIngredients();
         UnitOfMeasure unitHandler = new UnitOfMeasure();
         List<UnitOfMeasure> myUnits = unitHandler.getUnitsOfMeasure();
-        int i = 1;
 
+        
+        category.Items.Clear();
+        category.Items.Insert(0, new ListItem("Select a Category", "0"));
+        category.Items.Insert(1, new ListItem("New Category", "100"));
+        IngredientsList.clearUserController();
+
+        int i = 2;
+        
         foreach (Category thisCategory in myCategories)
         {
 
@@ -73,7 +82,8 @@ public partial class AddRecipe : System.Web.UI.Page
 
         i = 1;
 
-     foreach (Ingredient thisIngredient in myIngredients)
+        IngredientsList.insertIngredientElement(0, 0, "Select an Ingredient");
+        foreach (Ingredient thisIngredient in myIngredients)
         {
 
             IngredientsList.insertIngredientElement(i, thisIngredient.id, thisIngredient.name);
@@ -82,7 +92,8 @@ public partial class AddRecipe : System.Web.UI.Page
 
                   i = 1;
 
-                  foreach (UnitOfMeasure thisUnit in myUnits)
+        IngredientsList.insertUnitElement(0, 0, "Select a Unit");
+        foreach (UnitOfMeasure thisUnit in myUnits)
                   {
                       IngredientsList.insertUnitElement(i, thisUnit.id, thisUnit.name);
                       i++;
@@ -171,9 +182,36 @@ public partial class AddRecipe : System.Web.UI.Page
 
     protected void createNewIngredient_Click(object sender, EventArgs e)
     {
-        List<IngredientAuxiliar> auxList = (List<IngredientAuxiliar>)HttpContext.Current.Session["listOfIngredients"];
-        auxList.Add(new IngredientAuxiliar(IngredientsList.getIngredientValue(), IngredientsList.getIngredientName(), Convert.ToInt32(IngredientsList.getUnitOfMeasure()), IngredientsList.getNameUnitOfMeasure(), Convert.ToInt32(IngredientsList.getQuantity()))); 
-        HttpContext.Current.Session["listOfIngredients"] = auxList;
+        Boolean band = false;
+
+        if (!String.IsNullOrEmpty(IngredientsList.getIngredientName()) && !String.IsNullOrEmpty(IngredientsList.getNameUnitOfMeasure()) && !String.IsNullOrEmpty(IngredientsList.getQuantity()))
+        {
+            List<IngredientAuxiliar> auxList = (List<IngredientAuxiliar>)HttpContext.Current.Session["listOfIngredients"];
+
+            foreach (IngredientAuxiliar existing in auxList)
+            {
+                if(existing.idIngredient == IngredientsList.getIngredientValue())
+                {
+                    band = true;
+                    break;
+                }
+            }
+
+            if(band == false)
+            {
+                auxList.Add(new IngredientAuxiliar(IngredientsList.getIngredientValue(), IngredientsList.getIngredientName(), Convert.ToInt32(IngredientsList.getUnitOfMeasure()), IngredientsList.getNameUnitOfMeasure(), Convert.ToInt32(IngredientsList.getQuantity())));
+                HttpContext.Current.Session["listOfIngredients"] = auxList;
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('The ingredient selected already exists!')", true);
+            }
+            
+        }
+        else
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please, fill the ingredient fields')", true);
+        }
         bindGridData();
 
 

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Linq;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 public partial class RecipeDetail : System.Web.UI.Page
 {
@@ -38,7 +39,10 @@ public partial class RecipeDetail : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+       
             addNewCategory.Visible = false;
+           
+
             // bindData();
 
 
@@ -171,4 +175,6 @@ public partial class RecipeDetail : System.Web.UI.Page
         DetailsView1.DataBind();
         addCategoryText.Text = "";
     }
+
+
 }

@@ -62,4 +62,7 @@
             <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
         </div>
     </form>
+    <script>
+        document.getElementById("logOut").hidden = false;
+    </script>
 </asp:Content>

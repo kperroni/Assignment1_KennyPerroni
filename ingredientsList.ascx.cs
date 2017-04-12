@@ -25,6 +25,13 @@ public partial class IngredientsList : System.Web.UI.UserControl
 
       }
 
+    public void clearUserController()
+    {
+        ingredient.Items.Clear();
+        unitOfMeasure.Items.Clear();
+        
+    }
+
     public String getIngredientName()
       {
           return ingredient.SelectedItem.Text;

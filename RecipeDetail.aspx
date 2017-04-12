@@ -10,9 +10,7 @@
         <!--Author: Kenny Perroni. #300825160 &copy; Copyright 2017-->
         <h2 class="h2 page-header" runat="server" style="margin-top: -20px; margin-bottom: 40px;">Your recipes in the pot so far!</h2>
 
-        <asp:DataList ID="recipeList" runat="server"  DataKeyField="ID" DataSourceID="SqlDataSource2">
-
-               
+        <asp:DataList ID="recipeList" runat="server"  DataKeyField="ID" DataSourceID="SqlDataSource2">         
             
                 <ItemTemplate>
                     ID:
@@ -38,13 +36,11 @@
                     <br />
                     idCategory:
                     <asp:Label ID="idCategoryLabel" runat="server" Text='<%# Eval("idCategory") %>' />
-                    <asp:LinkButton id="button1"  Text="Display Operations" CommandName="select" runat="server"/>
+                    <asp:LinkButton id="button1" Text="Display Operations" CommandName="select" runat="server"/>
                     <br />
                     <br />
                 </ItemTemplate>
 
-               
-            
                 <SeparatorTemplate>
                     <hr />
                 </SeparatorTemplate>
@@ -133,6 +129,8 @@
 
     </div>
         </form>
-
+    <script>
+        document.getElementById("logOut").hidden = false;
+    </script>
 </asp:Content>
 

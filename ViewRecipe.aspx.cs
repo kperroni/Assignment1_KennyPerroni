@@ -65,6 +65,10 @@ public partial class ViewRecipe : System.Web.UI.Page
             reader.Close();
 
         }
+        catch
+        {
+
+        }
         finally
         {
             conn.Close();
