@@ -36,7 +36,7 @@
                     <br />
                     idCategory:
                     <asp:Label ID="idCategoryLabel" runat="server" Text='<%# Eval("idCategory") %>' />
-                    <asp:LinkButton id="button1" Text="Display Operations" CommandName="select" runat="server"/>
+                    <asp:LinkButton id="button1" OnClick="button1_Click" Text="Display Operations" CommandName="select" runat="server"/>
                     <br />
                     <br />
                 </ItemTemplate>
@@ -45,6 +45,20 @@
                     <hr />
                 </SeparatorTemplate>
             </asp:DataList>
+        <asp:Label ID="ratingLabel" runat="server" style="font-weight: bold;" Text="Rate this recipe!"></asp:Label>
+        <asp:Label ID="ratingExists" runat="server" style="font-weight: bold;" Text="Your rating for this recipe is:"></asp:Label>
+        <br />
+        <asp:DropDownList ID="rating" CssClass="form-control" Style="width: auto;" runat="server">
+                            <asp:ListItem Text="1 Star" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="2 Star" Value="2"></asp:ListItem>
+                            <asp:ListItem Text="3 Star" Value="3"></asp:ListItem>
+                            <asp:ListItem Text="4 Star" Value="4"></asp:ListItem>
+                            <asp:ListItem Text="5 Star" Value="5"></asp:ListItem>
+                        </asp:DropDownList>
+        <br />
+          <asp:Button ID="submitRating" CssClass="form-control" OnClick="submitRating_Click" runat="server" Text="Submit rating" />
+        <br />
+        <br />
 
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RecipePot %>" SelectCommand="SELECT A.idRecipe AS ID, A.name AS Name, B.name AS Category, A.serves AS Serves, A.description AS Description, A.prepareCookingTime AS Prepare, A.submittedBy AS Author, B.idCategory FROM recipe AS A INNER JOIN category AS B ON A.idCategory = B.idCategory WHERE (A.idRecipe = @idRecipe)">
             <SelectParameters>
